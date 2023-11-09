@@ -47,3 +47,7 @@ def recommended_posts(id: int, db: Session = Depends(get_db)):
     result = (db.query(Post).select_from(Post).filter(Post.id.in_(post_top_5)).all())
 
     return {'exp_group': exp_group, 'recommendations': result}
+
+if __name__ == "__main__":
+    model_control, model_test = load_models()
+    app.run(port=8888, debug=True, host='0.0.0.0')
